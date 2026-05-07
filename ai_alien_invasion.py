@@ -1,5 +1,6 @@
 import sys
 import pygame
+from settings import Settings
 
 
 class AI_AlienInvasion:
@@ -9,12 +10,11 @@ class AI_AlienInvasion:
         """Initialize the game, and create game resources."""
         pygame.init()
         self.clock = pygame.time.Clock()
+        self.settings = Settings()
         
         # Set the dimensions of the window
-        self.screen_width = 1200
-        self.screen_height = 800
-        self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
-        self.screen.fill((230, 230, 230))
+        self.screen = pygame.display.set_mode(
+            (self.settings.screen_width, self.settings.screen_height))
         # Set the window tile
         pygame.display.set_caption("Alien Invasion")
 
@@ -27,7 +27,7 @@ class AI_AlienInvasion:
                     sys.exit()
 
             # Fill the screen with a background color.
-            self.screen.fill((230, 230, 230))
+            self.screen.fill(self.settings.bg_color)
 
             # Make the most recently drawn screen visible.
             pygame.display.flip()
@@ -38,4 +38,3 @@ if __name__ == '__main__':
     # Make a game instance, and run the game.
     ai = AI_AlienInvasion()
     ai.run_game()
-    
